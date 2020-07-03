@@ -1,8 +1,11 @@
 import 'package:aabiskar/GitHubWebView.dart';
 import 'package:aabiskar/about.dart';
 import 'package:aabiskar/delayed_animation.dart';
+import 'package:aabiskar/flip_box_bar_custom.dart';
 import 'package:flip_box_bar/flip_box_bar.dart';
+
 import 'package:flutter/material.dart';
+import 'package:platform/platform.dart';
 
 void main() {
   runApp(MyApp());
@@ -83,52 +86,109 @@ class _MyHomePageState extends State<MyHomePage> {
 //      ),
 
       body: Banner(
-          location: BannerLocation.topEnd,
-          message: 'W.I.P',
-          child: tabs.elementAt(_selectedIndex)),
-      backgroundColor: Color(0xff292929),
-      bottomNavigationBar: SizedBox(
-        height: 50,
-        child: FlipBoxBar(
-          navBarHeight: 50,
-          selectedIndex: _selectedIndex,
-          items: [
-            FlipBarItem(
-                icon: Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                ),
-                text: Text(
-                  "About",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'MuseoModerno',
-                  ),
-                ),
-                frontColor: Color(0xff323232),
-                backColor: Color(0xff4E67EB)),
-            FlipBarItem(
-                icon: Icon(
-                  Icons.dashboard,
-                  color: Colors.white,
-                ),
-                text: Text(
-                  "GitHub Repo",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'MuseoModerno',
-                  ),
-                ),
-                frontColor: Color(0xff323232),
-                backColor: Color(0xff4E67EB)),
-          ],
-          onIndexChanged: (newIndex) {
-            setState(() {
-              _selectedIndex = newIndex;
-            });
-          },
-        ),
+        location: BannerLocation.topEnd,
+        message: 'W.I.P',
+        child: (MediaQuery.of(context).size.width < 1180.0)
+            ? tabs.elementAt(_selectedIndex)
+            : Column(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: FlipBoxBarCustom(
+                              navBarWidth: 25,
+                              selectedIndex: _selectedIndex,
+                              items: [
+                                FlipBarItem(
+                                    icon: Icon(
+                                      Icons.account_circle,
+                                      color: Colors.white,
+                                    ),
+                                    text: Text(
+                                      "About",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'MuseoModerno',
+                                      ),
+                                    ),
+                                    frontColor: Color(0xff323232),
+                                    backColor: Color(0xff4E67EB)),
+                                FlipBarItem(
+                                    icon: Icon(
+                                      Icons.dashboard,
+                                      color: Colors.white,
+                                    ),
+                                    text: Text(
+                                      "GitHub Repo",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'MuseoModerno',
+                                      ),
+                                    ),
+                                    frontColor: Color(0xff323232),
+                                    backColor: Color(0xff4E67EB)),
+                              ],
+                              onIndexChanged: (newIndex) {
+                                setState(() {
+                                  _selectedIndex = newIndex;
+                                });
+                              },
+                            )),
+                        Expanded(flex: 9, child: tabs.elementAt(_selectedIndex))
+                      ],
+                    ),
+                  )
+                ],
+              ),
       ),
+      backgroundColor: Color(0xff292929),
+
+      bottomNavigationBar: (MediaQuery.of(context).size.width < 1180.0)
+          ? SizedBox(
+              height: 50,
+              child: FlipBoxBar(
+                navBarHeight: 50,
+                selectedIndex: _selectedIndex,
+                items: [
+                  FlipBarItem(
+                      icon: Icon(
+                        Icons.account_circle,
+                        color: Colors.white,
+                      ),
+                      text: Text(
+                        "About",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'MuseoModerno',
+                        ),
+                      ),
+                      frontColor: Color(0xff323232),
+                      backColor: Color(0xff4E67EB)),
+                  FlipBarItem(
+                      icon: Icon(
+                        Icons.dashboard,
+                        color: Colors.white,
+                      ),
+                      text: Text(
+                        "GitHub Repo",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'MuseoModerno',
+                        ),
+                      ),
+                      frontColor: Color(0xff323232),
+                      backColor: Color(0xff4E67EB)),
+                ],
+                onIndexChanged: (newIndex) {
+                  setState(() {
+                    _selectedIndex = newIndex;
+                  });
+                },
+              ),
+            )
+          : null,
     );
   }
 }
