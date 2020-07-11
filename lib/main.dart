@@ -1,8 +1,7 @@
-import 'package:aabiskar/GitHubWebView.dart';
-import 'package:aabiskar/about.dart';
 import 'package:aabiskar/delayed_animation.dart';
-import 'package:aabiskar/flip_box_bar_custom.dart';
-import 'package:flip_box_bar/flip_box_bar.dart';
+import 'package:aabiskar/views/GitHubWebView.dart';
+import 'package:aabiskar/views/about.dart';
+import 'package:flip_box_bar_plus/flip_box_bar_plus.dart';
 
 import 'package:flutter/material.dart';
 import 'package:platform/platform.dart';
@@ -18,19 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Aabiskar Aryal',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
+        primarySwatch: Colors.indigo,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Aabiskar'),
@@ -97,8 +84,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Expanded(
                             flex: 1,
-                            child: FlipBoxBarCustom(
+                            child: FlipBoxBarPlus(
                               navBarWidth: 25,
+                              isVerticalBar: true,
                               selectedIndex: _selectedIndex,
                               items: [
                                 FlipBarItem(
@@ -148,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: (MediaQuery.of(context).size.width < 1180.0)
           ? SizedBox(
               height: 50,
-              child: FlipBoxBar(
+              child: FlipBoxBarPlus(
                 navBarHeight: 50,
                 selectedIndex: _selectedIndex,
                 items: [

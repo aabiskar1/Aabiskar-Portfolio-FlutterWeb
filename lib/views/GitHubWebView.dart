@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,7 @@ class _GitHubViewState extends State<GitHubView> {
             if (snapshot.data == null) {
               return Container(
                 child: Center(
-                  child: Text("Loading"),
+                  child: Image.asset("assets/loading.gif"),
                 ),
               );
             } else {
@@ -83,13 +84,17 @@ class _GitHubViewState extends State<GitHubView> {
                                     height: 50,
                                     width: 50,
                                   ),
-                                  Text(
-                                    snapshot.data[index].name,
-                                    style: TextStyle(
-                                        fontFamily: 'MuseoModerno',
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        height: 2),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: AutoSizeText(
+                                      snapshot.data[index].name,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                          fontFamily: 'MuseoModerno',
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          height: 2),
+                                    ),
                                   ),
                                 ],
                               )),
