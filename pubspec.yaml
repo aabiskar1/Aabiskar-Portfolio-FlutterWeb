@@ -80,6 +80,10 @@ flutter:
     - family: MuseoModerno
       fonts:
         - asset: fonts/MuseoModerno-Regular.ttf
+
+    - family: Fontawesome
+      fonts:
+        - asset: fonts/Fontawesome-webfont.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
