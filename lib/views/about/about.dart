@@ -1,11 +1,11 @@
-import 'package:aabiskar/views/sections/contact.dart';
-import 'package:aabiskar/views/sections/my_details.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:aabiskar/views/about/sections/experience_garageinc.dart';
+import 'package:aabiskar/views/about/sections/experience_sbsolutions.dart';
+import 'package:aabiskar/views/about/sections/my_details.dart';
+import 'package:aabiskar/views/about/sections/technologies.dart';
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'dart:io' show Platform;
-import '../delayed_animation.dart';
-import 'dart:js' as js;
+
+import 'sections/contact.dart';
 
 class AboutTab extends StatefulWidget {
   @override
@@ -16,7 +16,12 @@ class _AboutTabState extends State<AboutTab>
     with SingleTickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> animation;
-  var _sections = [ContactSection(), MyDetailsSection()];
+  var _sections = [
+    ContactSection(),
+    Technologies(),
+    ExperienceGarageInc(),
+    ExperienceSBSolutions(),
+  ];
   @override
   void initState() {
     animationController = AnimationController(
@@ -65,7 +70,8 @@ class _AboutTabState extends State<AboutTab>
             child: NavigationRail(
               groupAlignment: 0,
               backgroundColor: Color(0xff292929),
-              selectedIconTheme: IconThemeData(color: Colors.white60),
+              selectedIconTheme: IconThemeData(color: Colors.white),
+              unselectedIconTheme: IconThemeData(color: Colors.white60),
               onDestinationSelected: (int newIndex) {
                 setState(() {
                   selectedIndex = newIndex;
@@ -82,8 +88,16 @@ class _AboutTabState extends State<AboutTab>
                   label: Text('Contact'),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.question_answer),
-                  label: Text('About Me'),
+                  icon: Icon(Icons.build),
+                  label: Text('Technologies'),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.info_outline),
+                  label: Text('Garage Inc Experience'),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.info_outline),
+                  label: Text('SBSolutions Experience'),
                 ),
               ],
             ),

@@ -1,10 +1,11 @@
-import 'package:aabiskar/delayed_animation.dart';
-import 'package:aabiskar/views/GitHubWebView.dart';
-import 'package:aabiskar/views/about.dart';
+import 'package:aabiskar/global/global.dart';
+import 'package:aabiskar/views/about/about.dart';
 import 'package:flip_box_bar_plus/flip_box_bar_plus.dart';
-
 import 'package:flutter/material.dart';
-import 'package:platform/platform.dart';
+
+import 'views/GitHubWebView.dart';
+
+import 'views/contact_form.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static List<Widget> tabs = <Widget>[AboutTab(), GitHubView()];
+  static List<Widget> tabs = <Widget>[AboutTab(), GitHubView(), ContactForm()];
 
   final int delayedAmount = 1000;
   double _scale;
@@ -75,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Banner(
         location: BannerLocation.topEnd,
         message: 'W.I.P',
-        child: (MediaQuery.of(context).size.width < 1180.0)
+        child: (MediaQuery.of(context).size.width < breakPoint)
             ? tabs.elementAt(_selectedIndex)
             : Column(
                 children: [
@@ -117,6 +118,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                     frontColor: Color(0xff323232),
                                     backColor: Color(0xff4E67EB)),
+//                                FlipBarItem(
+//                                    icon: Icon(
+//                                      Icons.email,
+//                                      color: Colors.white,
+//                                    ),
+//                                    text: Text(
+//                                      "Contact Me",
+//                                      style: TextStyle(
+//                                        color: Colors.white,
+//                                        fontFamily: 'MuseoModerno',
+//                                      ),
+//                                    ),
+//                                    frontColor: Color(0xff323232),
+//                                    backColor: Color(0xff4E67EB)),
                               ],
                               onIndexChanged: (newIndex) {
                                 setState(() {
@@ -133,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       backgroundColor: Color(0xff292929),
 
-      bottomNavigationBar: (MediaQuery.of(context).size.width < 1180.0)
+      bottomNavigationBar: (MediaQuery.of(context).size.width < breakPoint)
           ? SizedBox(
               height: 50,
               child: FlipBoxBarPlus(
@@ -168,6 +183,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       frontColor: Color(0xff323232),
                       backColor: Color(0xff4E67EB)),
+//                  FlipBarItem(
+//                      icon: Icon(
+//                        Icons.dashboard,
+//                        color: Colors.white,
+//                      ),
+//                      text: Text(
+//                        "Contact Form",
+//                        style: TextStyle(
+//                          color: Colors.white,
+//                          fontFamily: 'MuseoModerno',
+//                        ),
+//                      ),
+//                      frontColor: Color(0xff323232),
+//                      backColor: Color(0xff4E67EB)),
                 ],
                 onIndexChanged: (newIndex) {
                   setState(() {

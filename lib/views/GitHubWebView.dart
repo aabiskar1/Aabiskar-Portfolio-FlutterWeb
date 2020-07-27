@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:aabiskar/global/global.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,7 +54,9 @@ class _GitHubViewState extends State<GitHubView> {
                 child: GridView.builder(
                   gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount:
-                          (MediaQuery.of(context).size.width > 1180.0) ? 5 : 2,
+                          (MediaQuery.of(context).size.width > breakPoint)
+                              ? 5
+                              : 2,
                       mainAxisSpacing: 10.0),
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -118,7 +121,8 @@ class _GitHubViewState extends State<GitHubView> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    (MediaQuery.of(context).size.width < 1180.0)
+                                    (MediaQuery.of(context).size.width <
+                                            breakPoint)
                                         ? Text(
                                             (snapshot.data[index].language ==
                                                     null)

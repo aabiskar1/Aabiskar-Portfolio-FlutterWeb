@@ -36,11 +36,13 @@ dependencies:
   flip_box_bar_plus:
   slimy_card:
   flip_card:
-  google_fonts: ^1.1.0
+  google_fonts:
   font_awesome_flutter:
+  carousel_slider:
   outline_gradient_button:
   auto_size_text:
-
+  lottie:
+  flutter_email_sender: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
